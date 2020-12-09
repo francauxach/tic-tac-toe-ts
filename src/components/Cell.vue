@@ -3,18 +3,27 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component'
+import { Options, Vue, prop } from 'vue-class-component'
+import { CellSelection } from '../interfaces/CellSelection'
+
+class Props {
+  cellId = prop({
+    type: Number,
+    required: true
+  })
+}
 
 @Options({
-  name: 'Cell',
-  props: ['cell']
+  name: 'Cell'
 })
-export default class Cell extends Vue {
+export default class Cell extends Vue.with(Props) {
   mark = ''
   options = ['x', '0']
 
   private toggleMark () {
     this.mark = this.options[Math.floor(Math.random() * this.options.length)]
+    const selection: CellSelection = { cellId: this.cellId, gamePlayer: { name: 'Franc', selection: [1] } }
+    this.$store.dispatch('game/makeCellSelection', selection)
   }
 }
 </script>
