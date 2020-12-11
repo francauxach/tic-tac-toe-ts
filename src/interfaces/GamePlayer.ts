@@ -1,4 +1,6 @@
 export interface GamePlayer {
-  name: String
-  selection: Array
+  name: string
+  selection: Array<number>,
+  mark: string,
+  isMarking: boolean
 }
