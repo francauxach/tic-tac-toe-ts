@@ -7,7 +7,9 @@
         </div>
       </div>
       <div class="mt-4">
-        <p>The current player is: {{ currentPlayer.name }}</p>
+        <p v-if="hasEnded && winner">The game is over and the winner is: {{ winner.name }}</p>
+        <p v-else-if="hasEnded && !winner">The game is over and we have deuce!</p>
+        <p v-else>The current player is: {{ currentPlayer.name }}</p>
       </div>
     </div>
   </div>
@@ -25,10 +27,8 @@ import { Getter } from 'vuex-class'
 })
 export default class GameBoard extends Vue {
   @Getter('game/currentPlayer') currentPlayer: GamePlayer
-
-  mounted () {
-    console.log(this.$store.state.game.hasEnded)
-  }
+  @Getter('game/hasEnded') hasEnded: boolean
+  @Getter('game/winner') winner: GamePlayer
 }
 </script>
 
