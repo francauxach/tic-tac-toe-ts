@@ -20,5 +20,13 @@ export const mutations = {
     if (state.board.length === 9) {
       state.hasEnded = true
     }
+  },
+  restartGame (state: any) {
+    state.board = []
+    state.players.forEach((player: GamePlayer) => { player.selection = [] })
+    state.players[0].isMarking = true
+    state.players[1].isMarking = false
+    state.winner = null
+    state.hasEnded = false
   }
 }

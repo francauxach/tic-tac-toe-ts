@@ -8,3 +8,7 @@ export function makeCellSelection ({ commit }: any, selection: CellSelection) {
 export function changeTurn ({ commit }: any) {
   commit('toggleCurrentPlayer')
 }
+
+export function restart ({ commit }: any) {
+  commit('restartGame')
+}

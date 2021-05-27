@@ -1,5 +1,5 @@
 <template>
-  <div @click="select" class="cell select-none text-9xl bg-gray-800 h-full text-white flex justify-center items-center" :class="{'cursor-pointer': !hasEnded}">
+  <div @click="select" class="font-gochi select-none text-9xl bg-gray-800 h-full text-white flex justify-center items-center" :class="{'cursor-pointer': !hasEnded}">
     {{ mark }}
   </div>
 </template>
@@ -36,13 +36,17 @@ export default class Cell extends Vue.with(Props) {
       })
     }
   }
+
+  mounted () {
+    this.$store.subscribeAction((action: any) => {
+      if (action.type === 'game/restart') {
+        this.mark = ''
+      }
+    })
+  }
 }
 </script>
 
 <style lang="sass">
-@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap')
-
-.cell
-  font-family: 'Gochi Hand', cursive
 
 </style>

@@ -17,5 +17,6 @@ export default class App extends Vue {}
 </script>
 
 <style lang="sass">
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap')
 
 </style>
