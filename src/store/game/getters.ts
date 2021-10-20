@@ -1,5 +1,9 @@
 import { GamePlayer } from '../../interfaces/GamePlayer'
 
+export function board (state: any) {
+  return state.board
+}
+
 export function hasEnded (state: any) {
   return state.hasEnded
 }

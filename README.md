@@ -2,12 +2,12 @@
 
 ## Project setup
 ```
-yarn install
+yarn
 ```
 
 ### Compiles and hot-reloads for development
 ```
-yarn serve
+yarn dev
 ```
 
 ### Compiles and minifies for production
@@ -15,15 +15,7 @@ yarn serve
 yarn build
 ```
 
-### Run your end-to-end tests
+### Compiles and serve a preview
 ```
-yarn test:e2e
+yarn serve
 ```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

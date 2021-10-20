@@ -1,4 +1,4 @@
-import { CellSelection } from '@/interfaces/CellSelection'
+import { CellSelection } from '../../interfaces/CellSelection'
 import { GamePlayer } from '../../interfaces/GamePlayer'
 
 export const mutations = {

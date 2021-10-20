@@ -1,52 +1,42 @@
-<template>
-  <div @click="select" class="font-gochi select-none text-9xl bg-gray-800 h-full text-white flex justify-center items-center" :class="{'cursor-pointer': !hasEnded}">
-    {{ mark }}
-  </div>
-</template>
-
-<script lang="ts">
-import { Options, Vue, prop } from 'vue-class-component'
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 import { CellSelection } from '../interfaces/CellSelection'
 import { GamePlayer } from '../interfaces/GamePlayer'
-import { Getter } from 'vuex-class'
 
-class Props {
-  cellId = prop({
-    type: Number,
-    required: true
-  })
-}
+const props = defineProps<{ cellId: Number }>()
 
-@Options({
-  name: 'Cell'
+const store = useStore()
+
+const currentPlayer = computed((): GamePlayer => {
+  return store.getters['game/currentPlayer']
 })
-export default class Cell extends Vue.with(Props) {
-  @Getter('game/currentPlayer') currentPlayer: GamePlayer
-  @Getter('game/hasEnded') hasEnded: boolean
 
-  private mark = ''
+const hasEnded = computed((): boolean => {
+  return store.getters['game/hasEnded']
+})
 
-  private select () {
-    if (!this.hasEnded && !this.$store.state.game.board.map((cell: CellSelection) => cell.id).includes(this.cellId)) {
-      this.mark = this.currentPlayer.mark
-      this.$store.dispatch('game/makeCellSelection', { id: this.cellId, gamePlayer: this.currentPlayer, mark: this.currentPlayer.mark }).then(() => {
-        if (!this.hasEnded) {
-          this.$store.dispatch('game/changeTurn')
-        }
-      })
-    }
-  }
+const board = computed(() => {
+  return store.getters['game/board']
+})
 
-  mounted () {
-    this.$store.subscribeAction((action: any) => {
-      if (action.type === 'game/restart') {
-        this.mark = ''
+const mark = computed(() => {
+  return board.value.find((cell: any) => cell.id === props.cellId)?.mark || ''
+})
+
+const select = () => {
+  if (!hasEnded.value && !board.value.map((cell: CellSelection) => cell.id).includes(props.cellId)) {
+    store.dispatch('game/makeCellSelection', { id: props.cellId, gamePlayer: currentPlayer.value, mark: currentPlayer.value.mark }).then(() => {
+      if (!hasEnded.value) {
+        store.dispatch('game/changeTurn')
       }
     })
   }
 }
 </script>
 
-<style lang="sass">
-
-</style>
+<template>
+  <div @click="select" class="font-gochi select-none text-9xl bg-gray-800 h-full text-white flex justify-center items-center" :class="{'cursor-pointer': !hasEnded}">
+    {{ mark }}
+  </div>
+</template>

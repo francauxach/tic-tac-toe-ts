@@ -1,22 +1,9 @@
-<template>
-  <div class="bg-gray-100 h-screen w-screen">
-    <game-board />
-  </div>
-</template>
-
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component'
+<script setup lang="ts">
 import GameBoard from './components/GameBoard.vue'
-
-@Options({
-  components: {
-    GameBoard
-  }
-})
-export default class App extends Vue {}
 </script>
 
-<style lang="sass">
-@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap')
-
-</style>
+<template>
+  <div class="bg-gray-100 h-screen w-screen">
+    <GameBoard />
+  </div>
+</template>
