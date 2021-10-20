@@ -5,6 +5,12 @@ module.exports = {
     extend: {
       fontFamily: {
         'gochi': ['Gochi Hand']
+      },
+      height: {
+        '26': '6.5rem'
+      },
+      width: {
+        '26': '6.5rem'
       }
     },
   },

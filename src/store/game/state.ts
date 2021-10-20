@@ -6,15 +6,18 @@ export default {
       name: 'Player 1',
       mark: 'x',
       selection: [],
-      isMarking: true
+      isMarking: true,
+      totalWins: 0
     },
     {
       name: 'Player 2',
       mark: '0',
       selection: [],
-      isMarking: false
+      isMarking: false,
+      totalWins: 0
     }
   ],
+  totalMatches: 1,
   winner: null,
   winnerCells: [
     [

@@ -13,6 +13,7 @@ export const mutations = {
   },
   determineWinner (state: any, currentPlayer: GamePlayer) {
     if (state.winnerCells.some((cell: Array<number>) => cell.every((value: number) => currentPlayer.selection.includes(value)))) {
+      currentPlayer.totalWins += 1
       state.winner = currentPlayer
       state.hasEnded = true
     }
@@ -22,6 +23,9 @@ export const mutations = {
     }
   },
   restartGame (state: any) {
+    if (state.winner || state.board.length === 9) {
+      state.totalMatches += 1
+    }
     state.board = []
     state.players.forEach((player: GamePlayer) => { player.selection = [] })
     state.players[0].isMarking = true
