@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useStore } from 'vuex'
-import { CellSelection } from '../interfaces/CellSelection'
 import { GamePlayer } from '../interfaces/GamePlayer'
 
-const props = defineProps<{ cellId: Number }>()
+const props = defineProps<{ cellId: number }>()
 
 const store = useStore()
 
@@ -16,16 +15,12 @@ const hasEnded = computed((): boolean => {
   return store.getters['game/hasEnded']
 })
 
-const board = computed(() => {
-  return store.getters['game/board']
-})
-
 const mark = computed(() => {
-  return board.value.find((cell: any) => cell.id === props.cellId)?.mark || ''
+  return store.getters['game/board'][Math.floor((props.cellId - 1) / 3)][(props.cellId - 1) % 3]
 })
 
 const select = () => {
-  if (!hasEnded.value && !board.value.map((cell: CellSelection) => cell.id).includes(props.cellId)) {
+  if (!hasEnded.value && !mark.value) {
     store.dispatch('game/makeCellSelection', { id: props.cellId, gamePlayer: currentPlayer.value, mark: currentPlayer.value.mark }).then(() => {
       if (!hasEnded.value) {
         store.dispatch('game/changeTurn')
