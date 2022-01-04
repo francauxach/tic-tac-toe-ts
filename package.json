@@ -9,7 +9,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "matrix-winner-decider": "^1.0.2",
+    "matrix-winner-decider": "^1.0.3",
     "vue": "^3.2.16"
   },
   "devDependencies": {
