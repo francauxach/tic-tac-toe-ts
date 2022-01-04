@@ -31,7 +31,7 @@ const select = () => {
 </script>
 
 <template>
-  <div @click="select" class="font-gochi select-none text-7xl sm:text-9xl bg-gray-800 h-full text-white flex justify-center items-center hover:bg-gray-700" :class="{'cursor-pointer': !hasEnded}">
+  <div @click="select" class="flex items-center justify-center h-full text-white bg-gray-800 select-none font-gochi text-7xl sm:text-9xl hover:bg-gray-700" :class="{'cursor-pointer': !hasEnded}">
     {{ mark }}
   </div>
 </template>

@@ -23,18 +23,18 @@ function restart () { store.dispatch('game/restart') }
 <template>
   <div class="flex flex-col items-center">
     <div>
-      <div class="flex items-center justify-center h-16 rounded-t-3xl bg-yellow-300" :class="{'bg-blue-400': winner}">
-        <span class="font-gochi text-white text-xl sm:text-2xl" v-if="hasEnded && winner">Game over! The winner is {{ winner.name }}</span>
-        <span class="font-gochi text-white text-xl sm:text-2xl" v-else-if="hasEnded && !winner">Game over! We have deuce.</span>
-        <span class="font-gochi text-white text-xl sm:text-2xl" v-else>{{ currentPlayer.name + '\'s turn' }}</span>
+      <div class="flex items-center justify-center h-16 bg-yellow-300 rounded-t-3xl" :class="{'bg-blue-400': winner}">
+        <span class="text-xl text-white font-gochi sm:text-2xl" v-if="hasEnded && winner">Game over! The winner is {{ winner.name }}</span>
+        <span class="text-xl text-white font-gochi sm:text-2xl" v-else-if="hasEnded && !winner">Game over! We have deuce.</span>
+        <span class="text-xl text-white font-gochi sm:text-2xl" v-else>{{ currentPlayer.name + '\'s turn' }}</span>
       </div>
-      <div class="bg-gray-900 grid grid-cols-3 gap-3">
+      <div class="grid grid-cols-3 gap-3 bg-gray-900">
         <div class="h-26 w-26 sm:h-28 sm:w-28" v-for="cellId in 9" :key="cellId">
           <Cell :cellId="cellId" />
         </div>
       </div>
-      <div class="flex items-center justify-center h-16 rounded-b-3xl bg-red-400 cursor-pointer hover:bg-red-500">
-        <span @click.stop="restart" class="font-gochi text-white text-2xl">Restart</span>
+      <div class="flex items-center justify-center h-16 bg-red-400 cursor-pointer rounded-b-3xl hover:bg-red-500">
+        <span @click.stop="restart" class="text-2xl text-white font-gochi">Restart</span>
       </div>
     </div>
   </div>
