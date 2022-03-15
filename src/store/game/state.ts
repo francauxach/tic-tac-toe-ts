@@ -19,4 +19,5 @@ export default {
   ],
   totalMatches: 1,
   winner: null,
+  winnerCells: null
 }

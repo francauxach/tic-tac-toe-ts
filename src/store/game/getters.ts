@@ -20,6 +20,10 @@ export function winner (state: any) {
   return state.winner
 }
 
+export function winnerCells (state: any) {
+  return state.winnerCells ?? []
+}
+
 export function totalMatches (state: any) {
   return state.totalMatches
 }

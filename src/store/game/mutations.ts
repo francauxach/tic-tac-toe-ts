@@ -13,9 +13,12 @@ export const mutations = {
     })
   },
   determineWinner (state: any, currentPlayer: GamePlayer) {
-    if (checkWinner(state.board, state.players.map((player: GamePlayer) => player.mark), 3)) {
+    const winnerCells = checkWinner(state.board, state.players.map((player: GamePlayer) => player.mark), 3)
+
+    if (winnerCells) {
       currentPlayer.totalWins += 1
       state.winner = currentPlayer
+      state.winnerCells = winnerCells
       state.hasEnded = true
     }
 
@@ -32,6 +35,7 @@ export const mutations = {
     state.players[0].isMarking = true
     state.players[1].isMarking = false
     state.winner = null
+    state.winnerCells = []
     state.hasEnded = false
   }
 }
