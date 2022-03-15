@@ -10,9 +10,9 @@ const players = computed(() => {
 </script>
 
 <template>
-  <div class="relative flex items-center justify-between h-16 text-4xl font-bold text-white bg-green-600 font-gochi">
-    <div class="absolute w-full text-center">Score Board</div>
-    <div v-for="player in players" :key="player.mark" class="px-8">{{ player.name }} has {{ player.totalWins || 'no' }} wins</div>
+  <div class="flex items-center justify-between h-16 px-8 text-4xl font-bold text-white bg-green-600 font-gochi">
+    <div class="order-2">Score Board</div>
+    <div v-for="player in players" :key="player.mark" :class="{'order-1': player.mark === 'x', 'order-3': player.mark !== 'x'}">{{ player.name }} has {{ player.totalWins || 'no' }} wins</div>
   </div>
 </template>
 
